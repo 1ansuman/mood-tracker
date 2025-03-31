@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood & Energy Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Track Your Mood & Energy</h2>
+        <label for="mood">Mood:</label>
+        <select id="mood">
+            <option value="happy">Happy</option>
+            <option value="neutral">Neutral</option>
+            <option value="tired">Tired</option>
+            <option value="stressed">Stressed</option>
+        </select>
+        <label for="energy">Energy Level (1-10):</label>
+        <input type="number" id="energy" min="1" max="10">
+        <button onclick="getRecommendation()">Get Recommendation</button>
+        <p id="recommendation"></p>
+    </div>
+
+    <script>
+        function getRecommendation() {
+            const mood = document.getElementById('mood').value;
+            const energy = parseInt(document.getElementById('energy').value);
+            let message = "";
+
+            if (mood === "happy" && energy > 7) {
+                message = "You're in great shape! Tackle your most challenging task now.";
+            } else if (mood === "tired" || energy < 4) {
+                message = "Take a short break or a power nap to recharge.";
+            } else if (mood === "stressed") {
+                message = "Try deep breathing or a quick walk to reset your mind.";
+            } else {
+                message = "Maintain your pace and stay hydrated!";
+            }
+
+            document.getElementById('recommendation').innerText = message;
+        }
+    </script>
+</body>
+</html>
